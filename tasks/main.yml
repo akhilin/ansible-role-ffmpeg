@@ -1,0 +1,38 @@
+---
+- name: install epel-release
+  yum:
+    name: epel-release
+    state: latest
+
+- name: install the 'Development tools' package group
+  yum:
+    name: "@Development tools"
+    state: present
+
+- name: ensure required packages are installed
+  yum:
+    name: "{{ packages }}"
+  vars:
+    packages:
+    - yasm
+
+- name: get ffmpeg source and extract
+  unarchive:
+    src: "http://ffmpeg.org/releases/ffmpeg-{{ ffmpeg_version }}.tar.bz2"
+    dest: /opt
+    remote_src: yes
+
+- name: configure
+  command: ./configure --prefix=/usr
+  args:
+    chdir: "/opt/ffmpeg-{{ ffmpeg_version }}"
+
+- name: make
+  make:
+    chdir: "/opt/ffmpeg-{{ ffmpeg_version }}"
+
+- name: make
+  make:
+    chdir: "/opt/ffmpeg-{{ ffmpeg_version }}"
+    target: install
+
