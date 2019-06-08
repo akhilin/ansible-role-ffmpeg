@@ -1,6 +1,12 @@
 ---
 sudo: required
 
+language: python
+python: "3.6"
+
+services:
+  - docker
+
 env:
   - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=latest
 
