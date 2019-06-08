@@ -1,12 +1,11 @@
 ---
 sudo: required
-dist: centos-7
 
 language: python
 python: "3.6"
 
 env:
-  - ANSIBLE_VERSION=latest
+  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=latest
 
 branches:
   only:
